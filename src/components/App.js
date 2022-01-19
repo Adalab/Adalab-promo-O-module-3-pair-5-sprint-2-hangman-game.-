@@ -1,12 +1,22 @@
 import "../styles/App.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import callToApi from "../services/api";
+import Header from "./Header";
 
 function App() {
-  let keyword = "patata";
+  const [keyword, setKeyword ] = useState("");
+  // let keyword = "patata";
   const [chart, setChart] = useState("");
   const [counter, setCounter] = useState(0);
   const [wrongLetters, setWrongLetters] = useState([]);
   const [correctLetters, setCorrectLetters] = useState([]);
+
+  useEffect ( () => {
+    callToApi() 
+    .then((responseApi) => {
+      setKeyword(responseApi);
+    });
+     }, []);
 
   const renderSolutionLetters = () => {
     const wordLetters = keyword.split("");
@@ -40,10 +50,9 @@ function App() {
     } else {
       setCounter(counter + 1);
     }
-    console.log(counter);
   };
-  console.log(wrongLetters);
-  console.log(correctLetters);
+
+
   const handleLastLetter = (ev) => {
     ev.preventDefault();
     let lastInput = ev.currentTarget.value;
@@ -63,9 +72,7 @@ function App() {
   return (
     <>
       <div className="page">
-        <header>
-          <h1 className="header__title">Juego del ahorcado</h1>
-        </header>
+        <Header text="Juego del ahorcado" />
         <main className="main">
           <section>
             <div className="solution">
