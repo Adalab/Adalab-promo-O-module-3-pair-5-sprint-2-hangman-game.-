@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import { Route, Switch } from "react-router-dom";
 import Instructions from "./Instructions";
 import MoreOptions from "./MoreOptions";
+import Dummy from "./Dummy";
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -68,32 +69,17 @@ function App() {
         </Route>
         <Route exact path="/options">
           <MoreOptions />
-        </Route>
-        <Route exact path="/">
+        </Route>        
           <main className="main">
+          <Route exact path="/">
             <Text
               renderSolutionLetters={renderSolutionLetters}
               renderWrongLetters={renderWrongLetters}
               value={chart}
               handleLastLetter={handleLastLetter}
-            />
-            <section className={`dummy error-${counter}`}>
-              <span className="error-13 eye"></span>
-              <span className="error-12 eye"></span>
-              <span className="error-11 line"></span>
-              <span className="error-10 line"></span>
-              <span className="error-9 line"></span>
-              <span className="error-8 line"></span>
-              <span className="error-7 line"></span>
-              <span className="error-6 head"></span>
-              <span className="error-5 line"></span>
-              <span className="error-4 line"></span>
-              <span className="error-3 line"></span>
-              <span className="error-2 line"></span>
-              <span className="error-1 line"></span>
-            </section>
-          </main>
-        </Route>
+            /></Route>
+            <Dummy />
+          </main>        
       </Switch>
       <Footer />
     </div>
