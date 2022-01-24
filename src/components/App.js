@@ -88,8 +88,7 @@ function App() {
                 Escribe una letra:
               </label>
               <input
-                value={chart}
-                onChange={handleLastLetter}
+                value={chart}               onChange={handleLastLetter}
                 autoComplete="off"
                 className="form__input"
                 maxLength="1"
